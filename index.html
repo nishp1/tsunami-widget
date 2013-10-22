@@ -22,36 +22,50 @@
             <h1>Tsunamis</h1>
         </div>
         <div data-role="panel" data-display="reveal"  data-theme="c" id="filter-panel">
-            <div data-role="header" data-theme="c" style="overflow:hidden;">
-                <h1>Water height</h1>
-                <div data-role="fieldcontain" class="ui-hide-label"  data-theme="c" >
-                    <div data-role="rangeslider" data-mini="true">
-                        <label for="water-height-min">Rangeslider:</label>
-                        <input type="range" name="water-height-min" id="water-height-min" min="0" max="100" value="0">
-                        <label for="water-height-max">Rangeslider:</label>
-                        <input type="range" name="water-height-max" id="water-height-max" min="0" max="600" value="550">
+            <form>
+                <div data-role="header" data-theme="c" style="overflow:hidden;">
+                    <h1>Water height</h1>
+                    <div data-role="fieldcontain" class="ui-hide-label"  data-theme="c" >
+                        <div data-role="rangeslider" data-mini="true">
+                            <label for="waterHeightMin">Rangeslider:</label>
+                            <input type="range" name="waterHeightMin" id="waterHeightMin" min="0" max="100" value="0">
+                            <label for="waterHeightMax">Rangeslider:</label>
+                            <input type="range" name="waterHeightMax" id="waterHeightMax" min="0" max="600" value="550">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div data-role="header"  data-theme="c" style="overflow:hidden;">
-                <h1>Event Validity</h1>
-                <div data-role="fieldcontain" class="ui-hide-label"  data-theme="c" >
-                    <div data-role="rangeslider" data-mini="true">
-                        <label for="validity-min">Rangeslider:</label>
-                        <input type="range" name="validity-min" id="validity-min" min="-1" max="4" value="-1">
-                        <label for="validity-max">Rangeslider:</label>
-                        <input type="range" name="validity-max" id="validity-max" min="-1" max="4" value="4">
+                <div data-role="header"  data-theme="c" style="overflow:hidden;">
+                    <h1>Event Validity</h1>
+                    <div data-role="fieldcontain" class="ui-hide-label"  data-theme="c" >
+                        <div data-role="rangeslider" data-mini="true">
+                            <label for="validityMin">Rangeslider:</label>
+                            <input type="range" name="validityMin" id="validityMin" min="-1" max="4" value="-1">
+                            <label for="validityMax">Rangeslider:</label>
+                            <input type="range" name="validityMax" id="validityMax" min="-1" max="4" value="4">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
-                <label for="mode1" class="ui-input-text" style="vertical-align: middle;">CalBox</label>
-                <input name="mode1" type="text" readonly="readonly" 
-                    data-role="datebox"
-                    data-theme="c"
-                    data-options='{"mode":"datebox", "enablePopup": true, "useModal": true, "useHeader": false, "themeButton": "b"}'
-                    class="ui-input-text ui-body-c ui-corner-all ui-icon-datebox" >
-            </div>
+                <div data-role="header"  data-theme="c" style="overflow:hidden;">
+                    <h1>Date</h1>
+                    <div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
+                        <label for="fromDate" class="ui-input-text" style="vertical-align: middle;">From</label>
+                        <input name="fromDate" type="text" readonly="readonly" 
+                            data-role="datebox"
+                            data-theme="c"
+                            data-options='{"mode":"datebox", "enablePopup": true, "useModal": true, "useHeader": false, "themeButton": "b"}'
+                            class="ui-input-text ui-body-c ui-corner-all ui-icon-datebox" >
+                        <label for="toDate" class="ui-input-text" style="vertical-align: middle;">To</label>
+                        <input name="toDate" type="text" readonly="readonly" 
+                            data-role="datebox"
+                            data-theme="c"
+                            data-options='{"mode":"datebox", "enablePopup": true, "useModal": true, "useHeader": false, "themeButton": "b"}'
+                            class="ui-input-text ui-body-c ui-corner-all ui-icon-datebox" >
+                    </div>
+                </div>
+                <input type="submit" value="Apply Filter">
+                <a href="#filter-panel" data-role="button">Close</a>
+            </form>
+            
         </div>
         <div class="container" data-role="content"></div>
 

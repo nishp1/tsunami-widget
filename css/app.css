@@ -73,9 +73,14 @@
 	background: transparent;
 }
 
-#filter-panel .ui-panel-inner {
-	padding: 0 15px 0 0;
+#filter-panel .ui-header {
+	border-top-width: 0
 }
-#filter-panel .ui-datebox-container {
+
+#filter-panel .ui-panel-inner {
+	padding: 0 15px;
+}
+
+.ui-datebox-container {
 	padding: 5px;
 }

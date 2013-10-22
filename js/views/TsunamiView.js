@@ -12,5 +12,14 @@ App.Views.EarthquakeView = Backbone.View.extend({
     render: function () {
         this.$el.html(this.tpl(this.model.toJSON()));
         return this;
+    },
+
+    show: function () {
+        this.$el.show();
+    },
+
+    hide: function () {
+        this.$el.hide();
     }
+
 });
