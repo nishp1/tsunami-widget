@@ -1,18 +1,21 @@
 App.Views.EarthquakesView = Backbone.View.extend({
 
-    html: '<button class="btn plot-btn">Plot on Map</button>' +
-        '<table class="table">' +
-            '<thead>' +
+    html: '<thead>' +
                 '<tr>' +
-                    '<th>Year</th>' +
-                    '<th>Location</th>' +
-                    '<th>Country</th>' +
-                    '<th>Cause</th>' +
+                    '<th data-priority="1">Date</th>' +
+                    '<th data-priority="persist">Location</th>' +
+                    '<th data-priority="2">Country</th>' +
+                    '<th data-priority="3">Cause</th>' +
                 '</tr>' +
             '</thead>' +
             '<tbody>' +
-            '</tbody>' +
-        '</table>',
+            '</tbody>',
+
+    tagName: 'table',
+    className: 'ui-responsive table-stroke ui-table ui-table-reflow table-stripe',
+    attributes: {
+        'data-role': 'table'
+    },
 
     events: {
         'click .plot-btn': 'plot'
@@ -25,22 +28,16 @@ App.Views.EarthquakesView = Backbone.View.extend({
         return this;
     },
 
+    shown: function () {
+        // initialize jquery mobile widget
+        this.$el.parent().trigger('create');
+    },
+
     addOne: function (model) {
         var view = new App.Views.EarthquakeView({
             model: model
         });
         this.$body.append(view.render().el);
-    },
-
-    plot: function() {
-        var collection = this.collection;
-
-        OWF.ready(function() {
-            OWF.Eventing.publish('map.feature.plot', JSON.stringify({
-                featureId: 1,
-                feature: collection.toKML()
-            }));
-        });
     }
 
 });

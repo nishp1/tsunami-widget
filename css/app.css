@@ -5,3 +5,77 @@
 .plot-btn {
     margin: 10px;
 }
+
+.ui-panel {
+	width: 25em;
+}
+
+/* positioning: panel */
+/* panel left  */
+.ui-panel-position-left {
+	left: -25em;
+}
+/* animated: panel left (for overlay and push) */
+.ui-panel-animate.ui-panel-position-left.ui-panel-display-overlay,
+.ui-panel-animate.ui-panel-position-left.ui-panel-display-push {
+	left: 0;
+	-webkit-transform: translate3d(-25em,0,0);
+	-moz-transform: translate3d(-25em,0,0);
+	transform: translate3d(-25em,0,0);
+}
+
+/* positioning: content wrap, fixed toolbars and dismiss */
+/* panel left open */
+.ui-panel-content-fixed-toolbar-position-left.ui-panel-content-fixed-toolbar-open,
+.ui-panel-content-wrap-position-left.ui-panel-content-wrap-open,
+.ui-panel-dismiss-position-left.ui-panel-dismiss-open {
+	left: 25em;
+	right: -25em;
+}
+/* animated: panel left open (for reveal and push) */
+.ui-panel-animate.ui-panel-content-fixed-toolbar-position-left.ui-panel-content-fixed-toolbar-open.ui-panel-content-fixed-toolbar-display-reveal,
+.ui-panel-animate.ui-panel-content-fixed-toolbar-position-left.ui-panel-content-fixed-toolbar-open.ui-panel-content-fixed-toolbar-display-push,
+.ui-panel-animate.ui-panel-content-wrap-position-left.ui-panel-content-wrap-open.ui-panel-content-wrap-display-reveal,
+.ui-panel-animate.ui-panel-content-wrap-position-left.ui-panel-content-wrap-open.ui-panel-content-wrap-display-push {
+	left: 0;
+	right: 0;
+	-webkit-transform: translate3d(25em,0,0);
+	-moz-transform: translate3d(25em,0,0);
+	transform: translate3d(25em,0,0);
+}
+/* panel right open */
+.ui-panel-content-fixed-toolbar-position-right.ui-panel-content-fixed-toolbar-open,
+.ui-panel-content-wrap-position-right.ui-panel-content-wrap-open,
+.ui-panel-dismiss-position-right.ui-panel-dismiss-open {
+	left: -25em;
+	right: 25em;
+}
+/* animated: panel right open (for reveal and push) */
+.ui-panel-animate.ui-panel-content-fixed-toolbar-position-right.ui-panel-content-fixed-toolbar-open.ui-panel-content-fixed-toolbar-display-reveal, 
+.ui-panel-animate.ui-panel-content-fixed-toolbar-position-right.ui-panel-content-fixed-toolbar-open.ui-panel-content-fixed-toolbar-display-push,
+.ui-panel-animate.ui-panel-content-wrap-position-right.ui-panel-content-wrap-open.ui-panel-content-wrap-display-reveal, 
+.ui-panel-animate.ui-panel-content-wrap-position-right.ui-panel-content-wrap-open.ui-panel-content-wrap-display-push {
+	left: 0;
+	right: 0;
+	-webkit-transform: translate3d(-25em,0,0);
+	-moz-transform: translate3d(-25em,0,0);
+	transform: translate3d(-25em,0,0);
+}
+
+
+
+
+
+
+#filter-panel .ui-panel,
+#filter-panel .ui-panel-inner,
+#filter-panel .ui-header {
+	background: transparent;
+}
+
+#filter-panel .ui-panel-inner {
+	padding: 0 15px 0 0;
+}
+#filter-panel .ui-datebox-container {
+	padding: 5px;
+}

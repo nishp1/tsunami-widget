@@ -47,19 +47,6 @@ App.Models.Tsunami = Backbone.Model.extend({
     // "totalHousesDamaged": "",
     // "totalHousesDamagedDescription": ""
 
-    // 0 = Unknown
-    // 1 = Earthquake
-    // 2 = Questionable Earthquake
-    // 3 = Earthquake and Landslide
-    // 4 = Volcano and Earthquake
-    // 5 = Volcano, Earthquake, and Landslide
-    // 6 = Volcano
-    // 7 = Volcano and Landslide
-    // 8 = Landslide
-    // 9 = Meteorological
-    // 10 = Explosion
-    // 11 = Astronomical Tide,
-
     causeCodes: {
         '0': 'Unknown',
         '1': 'Earthquake',
