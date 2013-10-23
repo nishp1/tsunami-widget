@@ -20,8 +20,6 @@
     $filterPanel.find('form').on('submit', function () {
         var data = $(this).serializeArray();
         data = _.zipObject(_.pluck(data, 'name'), _.pluck(data, 'value'));
-        data.fromDate = data.fromDate.split('-').join('/');
-        data.toDate = data.toDate.split('-').join('/');
         App.EventBus.trigger('filter', data);
         $filterPanel.panel('close');
         return false;
