@@ -20,35 +20,27 @@
             <a href="#filter-panel" data-role="button" data-inline="true">< Filter</a>
             <h1>Tsunamis</h1>
         </div>
-        <div data-role="panel" data-display="reveal"  data-theme="c" id="filter-panel">
-            <form>
-                <div data-role="header" data-theme="c" style="overflow:hidden;">
-                    <h1>Water height</h1>
-                    <div data-role="fieldcontain" class="ui-hide-label"  data-theme="c" >
-                        <div data-role="rangeslider" data-mini="true">
-                            <label for="waterHeightMin">Rangeslider:</label>
-                            <input type="range" name="waterHeightMin" id="waterHeightMin" min="0" max="100" value="0">
-                            <label for="waterHeightMax">Rangeslider:</label>
-                            <input type="range" name="waterHeightMax" id="waterHeightMax" min="0" max="600" value="550">
-                        </div>
-                    </div>
-                </div>
-                <div data-role="header"  data-theme="c" style="overflow:hidden;">
-                    <h1>Event Validity</h1>
-                    <div data-role="fieldcontain" class="ui-hide-label"  data-theme="c" >
-                        <div data-role="rangeslider" data-mini="true">
-                            <label for="validityMin">Rangeslider:</label>
-                            <input type="range" name="validityMin" id="validityMin" min="-1" max="4" value="-1">
-                            <label for="validityMax">Rangeslider:</label>
-                            <input type="range" name="validityMax" id="validityMax" min="-1" max="4" value="4">
-                        </div>
-                    </div>
-                </div>
-                <input type="submit" value="Apply Filter">
-                <a href="#filter-panel" data-role="button">Close</a>
-            </form>
-        </div>
         
+        <form data-role="panel" data-display="reveal"  data-theme="c" id="filter-panel">
+            <fieldset data-role="rangeslider" data-mini="true" class="panel-item">
+                <label for="water-height-min">Water height</label>
+                <input type="range" id="water-height-min" name="water-height-min" min="0" max="600" value="0"/>
+                <input type="range" id="water-height-max" name="water-height-max" min="0" max="600" value="600"/>
+            </fieldset>
+
+            <fieldset data-role="rangeslider" data-mini="true" class="panel-item">
+                <label for="validity-min">Event Validity</label>
+                <input type="range" id="validity-min" name="validity-min" min="-1" max="4" value="-1"/>
+                <input type="range" id="validity-max" name="validity-max" min="-1" max="4" value="4"/>
+            </fieldset>
+
+            <fieldset data-role="rangeslider" data-mini="true" class="panel-item">
+                <label for="damage-min">Damage in millions</label>
+                <input type="range" id="damage-min" name="damage-min" min="0" max="210000" value="0"/>
+                <input type="range" id="damage-max" name="damage-max" min="-1" max="210000" value="210000"/>
+            </fieldset>
+        </form>
+
         <div class="container" data-role="content"></div>
 
         <script src="js/vendor/jquery-1.10.2.js"></script>

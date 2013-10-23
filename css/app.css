@@ -1,3 +1,12 @@
+body {
+    font-size: 14px;
+}
+
+.ui-corner-all,
+.ui-btn-corner-all {
+    border-radius: 0;
+}
+
 .container {
     width: 100%;
 }
@@ -6,22 +15,63 @@
     margin: 10px;
 }
 
+#filter-panel .ui-panel,
+#filter-panel .ui-panel-inner,
+#filter-panel .ui-header {
+    background: transparent;
+}
+
+#filter-panel .ui-header {
+    border-top-width: 0
+}
+
+#filter-panel .ui-header h1 {
+    text-align: left;
+    margin-left: 0
+}
+
+.panel-item {
+    margin: 10px 0;
+}
+
+.panel-item label.ui-input-text {
+    font-size: .9em;
+
+    color: #666666;
+
+    display: block;
+    width: auto;
+}
+
+.panel-item .ui-input-text.ui-slider-input {
+    border-radius: 0;
+    border: 1px solid #BBBBBB;
+    box-shadow: none;
+
+    color: #333333;
+}
+input.damageMax {
+    width: 50px !important;
+}
+
+/*************** jQuery mobile overrides ***************/
+
 .ui-panel {
-	width: 25em;
+    width: 25em;
 }
 
 /* positioning: panel */
 /* panel left  */
 .ui-panel-position-left {
-	left: -25em;
+    left: -25em;
 }
 /* animated: panel left (for overlay and push) */
 .ui-panel-animate.ui-panel-position-left.ui-panel-display-overlay,
 .ui-panel-animate.ui-panel-position-left.ui-panel-display-push {
-	left: 0;
-	-webkit-transform: translate3d(-25em,0,0);
-	-moz-transform: translate3d(-25em,0,0);
-	transform: translate3d(-25em,0,0);
+    left: 0;
+    -webkit-transform: translate3d(-25em,0,0);
+    -moz-transform: translate3d(-25em,0,0);
+    transform: translate3d(-25em,0,0);
 }
 
 /* positioning: content wrap, fixed toolbars and dismiss */
@@ -29,58 +79,45 @@
 .ui-panel-content-fixed-toolbar-position-left.ui-panel-content-fixed-toolbar-open,
 .ui-panel-content-wrap-position-left.ui-panel-content-wrap-open,
 .ui-panel-dismiss-position-left.ui-panel-dismiss-open {
-	left: 25em;
-	right: -25em;
+    left: 25em;
+    right: -25em;
 }
 /* animated: panel left open (for reveal and push) */
 .ui-panel-animate.ui-panel-content-fixed-toolbar-position-left.ui-panel-content-fixed-toolbar-open.ui-panel-content-fixed-toolbar-display-reveal,
 .ui-panel-animate.ui-panel-content-fixed-toolbar-position-left.ui-panel-content-fixed-toolbar-open.ui-panel-content-fixed-toolbar-display-push,
 .ui-panel-animate.ui-panel-content-wrap-position-left.ui-panel-content-wrap-open.ui-panel-content-wrap-display-reveal,
 .ui-panel-animate.ui-panel-content-wrap-position-left.ui-panel-content-wrap-open.ui-panel-content-wrap-display-push {
-	left: 0;
-	right: 0;
-	-webkit-transform: translate3d(25em,0,0);
-	-moz-transform: translate3d(25em,0,0);
-	transform: translate3d(25em,0,0);
+    left: 0;
+    right: 0;
+    -webkit-transform: translate3d(25em,0,0);
+    -moz-transform: translate3d(25em,0,0);
+    transform: translate3d(25em,0,0);
 }
 /* panel right open */
 .ui-panel-content-fixed-toolbar-position-right.ui-panel-content-fixed-toolbar-open,
 .ui-panel-content-wrap-position-right.ui-panel-content-wrap-open,
 .ui-panel-dismiss-position-right.ui-panel-dismiss-open {
-	left: -25em;
-	right: 25em;
+    left: -25em;
+    right: 25em;
 }
 /* animated: panel right open (for reveal and push) */
 .ui-panel-animate.ui-panel-content-fixed-toolbar-position-right.ui-panel-content-fixed-toolbar-open.ui-panel-content-fixed-toolbar-display-reveal, 
 .ui-panel-animate.ui-panel-content-fixed-toolbar-position-right.ui-panel-content-fixed-toolbar-open.ui-panel-content-fixed-toolbar-display-push,
 .ui-panel-animate.ui-panel-content-wrap-position-right.ui-panel-content-wrap-open.ui-panel-content-wrap-display-reveal, 
 .ui-panel-animate.ui-panel-content-wrap-position-right.ui-panel-content-wrap-open.ui-panel-content-wrap-display-push {
-	left: 0;
-	right: 0;
-	-webkit-transform: translate3d(-25em,0,0);
-	-moz-transform: translate3d(-25em,0,0);
-	transform: translate3d(-25em,0,0);
+    left: 0;
+    right: 0;
+    -webkit-transform: translate3d(-25em,0,0);
+    -moz-transform: translate3d(-25em,0,0);
+    transform: translate3d(-25em,0,0);
 }
 
-
-
-
-
-
-#filter-panel .ui-panel,
-#filter-panel .ui-panel-inner,
-#filter-panel .ui-header {
-	background: transparent;
+.ui-slider-track.ui-mini .ui-slider-handle {
+    height: 16px;
+    width: 9px;
+    margin: -9px 0 0 -7px;
 }
 
-#filter-panel .ui-header {
-	border-top-width: 0
-}
-
-#filter-panel .ui-panel-inner {
-	padding: 0 15px;
-}
-
-.ui-datebox-container {
-	padding: 5px;
+.ui-btn-active {
+    background: #FDAA40;
 }

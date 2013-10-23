@@ -39,17 +39,20 @@ App.Views.EarthquakesView = Backbone.View.extend({
     applyFilter: function (options) {
         var fromDate = options.fromDate && new Date(options.fromDate),
             toDate = options.toDate && new Date(options.toDate),
-            validityMax = parseInt(options.validityMax, 10),
-            validityMin = parseInt(options.validityMin, 10),
-            waterHeightMax = parseInt(options.waterHeightMax, 10),
-            waterHeightMin = parseInt(options.waterHeightMin, 10);
+            validityMax = options.validity.max,
+            validityMin = options.validity.min,
+            waterHeightMax = options.waterHeight.max,
+            waterHeightMin = options.waterHeight.min,
+            damageMax = options.damage.max,
+            damageMin = options.damage.min;
 
         _.each(this.views, function (view) {
             var show = true,
                 model = view.model,
                 date = model.get('date'),
                 validity = model.get('eventValidity'),
-                waterHeight = model.get('maximumWaterHeight');
+                waterHeight = model.get('maximumWaterHeight'),
+                damage = model.get('damageMillionsDollars');
 
             if(fromDate) {
                 show = show && date > fromDate;
@@ -59,7 +62,8 @@ App.Views.EarthquakesView = Backbone.View.extend({
             }
 
             show = (validity >= validityMin && validity <= validityMax)
-                    && (waterHeight >= waterHeightMin && waterHeight <= waterHeightMax);
+                    && (waterHeight >= waterHeightMin && waterHeight <= waterHeightMax)
+                    && (damage >= damageMin && damage <= damageMax);
 
 
             show ? view.show() : view.hide();

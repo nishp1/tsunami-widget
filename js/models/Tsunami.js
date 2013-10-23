@@ -65,6 +65,7 @@ App.Models.Tsunami = Backbone.Model.extend({
     parse: function (resp) {
         resp.cause = this.causeCodes[resp.causeCode];
         resp.date = new Date(resp.year, resp.month, resp.day);
+        resp.damageMillionsDollars = parseInt(resp.damageMillionsDollars, 10) || 0;
 
         var intKeys = ['eventValidity', 'maximumWaterHeight'];
         _.each(intKeys, function (key) {

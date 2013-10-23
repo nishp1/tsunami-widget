@@ -7,7 +7,7 @@ App.Collections.Tsunamis = Backbone.Collection.extend({
     kmlTmpl: _.template('<kml xmlns="http://www.opengis.net/kml/2.2"><%= content %></kml>'),
 
     comparator: function (model) {
-        return -model.get('year');
+        return -model.get('date');
     },
 
     toKML: function() {
