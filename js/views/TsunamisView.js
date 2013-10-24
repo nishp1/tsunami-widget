@@ -2,10 +2,10 @@ App.Views.EarthquakesView = Backbone.View.extend({
 
     html: '<thead>' +
                 '<tr>' +
-                    '<th data-priority="1">Date</th>' +
                     '<th data-priority="persist">Location</th>' +
-                    '<th data-priority="2">Country</th>' +
-                    '<th data-priority="3">Cause</th>' +
+                    '<th data-priority="1">Country</th>' +
+                    '<th data-priority="2">Cause</th>' +
+                    '<th data-priority="3">Time</th>' +
                 '</tr>' +
             '</thead>' +
             '<tbody>' +
@@ -23,6 +23,9 @@ App.Views.EarthquakesView = Backbone.View.extend({
 
     views: null,
 
+    // applied filter
+    filter: null,
+
     initialize: function (options) {
         Backbone.View.prototype.initialize.call(this, options);
         this.views = [];
@@ -37,14 +40,19 @@ App.Views.EarthquakesView = Backbone.View.extend({
     },
 
     applyFilter: function (options) {
-        var fromDate = options.fromDate && new Date(options.fromDate),
-            toDate = options.toDate && new Date(options.toDate),
-            validityMax = options.validity.max,
-            validityMin = options.validity.min,
-            waterHeightMax = options.waterHeight.max,
-            waterHeightMin = options.waterHeight.min,
-            damageMax = options.damage.max,
-            damageMin = options.damage.min;
+        var fromDate = options.date && options.date.from && new Date(options.date.from),
+            toDate = options.date && options.date.to && new Date(options.date.to),
+            validityMax = options.validity && options.validity.max,
+            validityMin = options.validity && options.validity.min,
+            waterHeightMax = options.waterHeight && options.waterHeight.max,
+            waterHeightMin = options.waterHeight && options.waterHeight.min,
+            damageMax = options.damage && options.damage.max,
+            damageMin = options.damage && options.damage.min;
+
+        this.filter = options;
+
+        // hide to prevent reflows
+        this.$el.hide();
 
         _.each(this.views, function (view) {
             var show = true,
@@ -55,24 +63,50 @@ App.Views.EarthquakesView = Backbone.View.extend({
                 damage = model.get('damageMillionsDollars');
 
             if(fromDate) {
-                show = show && date > fromDate;
+                show = show && date >= fromDate;
             }
             if(toDate) {
-                show = show && date < toDate;
+                show = show && date <= toDate;
             }
-
-            show = (validity >= validityMin && validity <= validityMax)
-                    && (waterHeight >= waterHeightMin && waterHeight <= waterHeightMax)
-                    && (damage >= damageMin && damage <= damageMax);
-
+            if(validityMin) {
+                show = show && validity >= validityMin;
+            }
+            if(validityMax) {
+                show = show && validity <= validityMax;
+            }
+            if(waterHeightMin) {
+                show = show && waterHeight >= waterHeightMin;
+            }
+            if(waterHeightMax) {
+                show = show && waterHeight <= waterHeightMax;
+            }
+            if(damageMin) {
+                show = show && damage >= damageMin;
+            }
+            if(damageMax) {
+                show = show && damage <= damageMax;
+            }
 
             show ? view.show() : view.hide();
         });
+        
+        this.$el.show();
+        this.plot();
     },
 
     shown: function () {
         // initialize jquery mobile widget
         this.$el.parent().trigger('create');
+    },
+
+    plot: function () {
+        var me = this;
+        OWF.ready(function() {
+            OWF.Eventing.publish('map.feature.plot', JSON.stringify({
+                featureId: 1,
+                feature: me.toKML()
+            }));
+        });
     },
 
     addOne: function (model) {
@@ -81,6 +115,14 @@ App.Views.EarthquakesView = Backbone.View.extend({
         });
         this.views.push(view);
         this.$body.append(view.render().el);
+    },
+
+    toKML: function () {
+        var modelKML = _.map(this.views, function(view) {
+            return view.$el.is(':visible') ? view.model.toKML(): '';
+        }).join('');
+
+        return '<kml xmlns="http://www.opengis.net/kml/2.2">' + modelKML + '</kml>';
     }
 
 });

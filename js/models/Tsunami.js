@@ -64,14 +64,45 @@ App.Models.Tsunami = Backbone.Model.extend({
 
     parse: function (resp) {
         resp.cause = this.causeCodes[resp.causeCode];
-        resp.date = new Date(resp.year, resp.month, resp.day);
         resp.damageMillionsDollars = parseInt(resp.damageMillionsDollars, 10) || 0;
 
-        var intKeys = ['eventValidity', 'maximumWaterHeight'];
+        var intKeys = ['eventValidity', 'maximumWaterHeight', 'year', 'month', 'day', 'hour', 'minute', 'second'];
         _.each(intKeys, function (key) {
-            resp[key] = parseInt(resp[key], 10);
+            resp[key] = parseInt(resp[key], 10) || 0;
         });
+
+        resp.date = new Date(resp.year, resp.month, resp.day);
+        resp.time = new Date(resp.year, resp.month, resp.day, resp.hour, resp.minute, resp.second);
         
         return resp;
+    },
+
+    kmlTmpl: _.template('<Placemark>' +
+        '<name><%- locationName %> - <%- time %></name>' +
+        '<Style>' +
+            '<IconStyle>' +
+                '<Icon>' +
+                    '<href>images/red-circle.png</href>' +
+                '</Icon>' +
+                '<hotSpot x="0.5" y="0" xunits="fraction" yunits="fraction"></hotSpot>' +
+            '</IconStyle>' +
+        '</Style>' +
+        '<Point>' +
+            '<coordinates><%- longitude %>,<%- latitude %></coordinates>' +
+        '</Point>' +
+        '<LookAt>' +
+            '<longitude><%- longitude %></longitude>' +
+            '<latitude><%- latitude %></latitude>' +
+        '</LookAt>' +
+    '</Placemark>'),
+
+    toKML: function() {
+        return this.kmlTmpl(this.toJSON());
+    },
+
+    toJSON: function() {
+        return _.extend(Backbone.Model.prototype.toJSON.apply(this), {
+            time: this.get('time').toUTCString()
+        });
     }
 });

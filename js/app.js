@@ -1,12 +1,13 @@
 ;(function () {
-    var earthquakes = new App.Collections.Tsunamis();
+    var earthquakes = new App.Collections.Tsunamis(),
+        earthquakesView;
 
     earthquakes.fetch().done(function () {
-        var view = new App.Views.EarthquakesView({
+        earthquakesView = new App.Views.EarthquakesView({
             collection: earthquakes
         });
-        view.render().$el.appendTo('.container');
-        view.shown();
+        earthquakesView.render().$el.appendTo('.container');
+        earthquakesView.shown();
     });
 
     var $filterPanel = $('#filter-panel').on('swipeleft', function (evt) {
@@ -37,6 +38,19 @@
         App.EventBus.trigger('filter', data);
         return false;
     });
+
+    App.onOWFReady = function () {
+        OWF.Eventing.subscribe('daterange.select', function (sender, msg) {
+            var daterange = JSON.parse(msg),
+                filter = _.extend({}, earthquakesView.filter, {
+                    date: {
+                        from: new Date(daterange.from),
+                        to: new Date(daterange.to)
+                    }
+                });
+            earthquakesView.applyFilter(filter);
+        });
+    };
 
 })();
 

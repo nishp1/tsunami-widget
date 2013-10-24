@@ -3,10 +3,10 @@ App.Views.EarthquakeView = Backbone.View.extend({
     tagName: 'tr',
 
     tpl: _.template(
-        '<th><%- day %>/<%- month %>/<%- year %></th>' +
-        '<td><%- locationName %></td>' +
+        '<th><%- locationName %></th>' +
         '<td><%- country %></td>' +
-        '<td><%- cause %></td>'
+        '<td><%- cause %></td>' +
+        '<td><%- time %></td>'
     ),
 
     render: function () {
